@@ -29,8 +29,9 @@ public class TablaNumero extends HttpServlet {
 				out.println("</tr>");
 			}
 			out.println("</table></center>");
-			//out.println("<a href='numero.html'>Volver<a></body></html>");
-			out.println("<input type = 'submit' value = 'numero.html'/>Volver</body></html>");
+			out.println("<a href='numero.html'>Volver<a></body></html>");
+			//NO FUNCIONA.HABRÍA Q METERLO DENTRO DE UN FORM 
+			//out.println("<button type = 'submit' value = 'numero.html'/>Volver</body></html>");
 		}
 	}
 

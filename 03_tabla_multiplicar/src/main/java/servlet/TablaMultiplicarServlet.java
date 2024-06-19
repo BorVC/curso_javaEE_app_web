@@ -22,7 +22,7 @@ public class TablaMultiplicarServlet extends HttpServlet {
 			//10 filas vertical(i = 1,2...)
 			for(int i = 1; i <= 10; i++) {
 				out.println("<tr>");
-				//10 celdas con el resultado por cada fila ( i = 1 * j =1,2,3...)
+				//10 celdas con el resultado por cada fila ( i = 1 * j =1,2,3... hasta i = 10)
 				for(int j = 1; j <= 10; j++) {
 					out.println("<td>" + i * j + "</td>");
 				}
