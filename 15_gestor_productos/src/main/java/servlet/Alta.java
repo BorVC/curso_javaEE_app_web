@@ -27,7 +27,7 @@ public class Alta extends HttpServlet {
 		var service = new ProductosService();
 		//Llamada al método alta() del service
 		service.nuevo(producto);
-		//Transferir control al JSP
+		//mostrar pagina de inicio una vez hecho
 		request.getRequestDispatcher("getorProductos.html").forward(request, response);
 		
 	}
