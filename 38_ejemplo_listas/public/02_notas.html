@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+     Notas:<input type="text" id="nota"><br>
+     <input type="button" value="Guardar" id="guardar" onclick="guardar()"><br>
+     <input type="button" value="Media" id="media" onclick="media()"> &nbsp
+     <p id="verMedia"></p><br>
+     <input type="button" value="Aprobados" id="aprobados" onclick="aprobados()"> &nbsp
+     <p id="verAprobados"></p><br>
+     <input type="button" value="Ver todas" id="todas" onclick="todasNotas()"> &nbsp
+     <p id="verTodas"></p><br>
+
+     <script>
+        //array de notas
+        var notas = [];
+
+        //Funciones 
+        function guardar(){
+            let nota = parseInt(document.getElementById("nota").value);
+            notas.push(nota);
+            document.getElementById("nota").value = "";
+            document.getElementById("nota").focus;
+            //Mirar en consola lo que va ocurriendo en el array
+            console.log(notas)
+        }
+        function media(){
+            let suma = 0;
+            for(let nota of notas){
+                suma += nota;
+            }
+            let media = suma / notas.length;
+            document.getElementById("verMedia").innerHTML = media;
+        }
+        function aprobados(){
+            let aprobados = [];
+            for(let nota of notas){
+                if(nota >= 5){
+                    aprobados.push(nota);
+                }
+            }
+            let numAprobados = aprobados.length;
+            document.getElementById("verAprobados").innerHTML = numAprobados;
+        }
+        function todasNotas(){
+            let todas = document.getElementById("todas");
+            //notas.sort((a,b) => (a - b));
+            //document.getElementById("verTodas").innerHTML = notas;
+            document.getElementById("verTodas").innerHTML = notas.join("-");
+        }
+        for(let n of notas){
+                console.log(n + "-");  
+            }
+
+            console.log(notas.length);
+        
+     </script>
+</body>
+</html>

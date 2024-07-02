@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+      <script type="text/javascript">
+            var data = [];
+            var other = [5,3]
+            //Añadir datos 
+            data[0]=25;
+            data[3]=40;
+            other.push("hello");
+            console.log(data.length);
+            console.log(other.length);
+            //recorrer con un array / lista
+            for(let n of other){
+                console.log(n + "-");  
+            }
+
+            for(let i = 0;i <=other.length;i++){
+                console.log(other[i] + "-");   
+            }
+
+            var i = 0;
+            while(i <= other.length){
+                  i++;
+                  console.log(other[i] + "-"); 
+            }
+            other.forEach(n => console.log(n + "-"));
+
+            other.forEach(function(n){
+                  console.log(n + "-");
+            })
+            //Ordenar Arrays
+            data.sort((a,b)=>(b - a));
+            console.log(data);
+            other.sort(function(a,b){
+                  return a - b ;
+            });
+            console.log(other);
+      </script>
+</body>
+</html>
