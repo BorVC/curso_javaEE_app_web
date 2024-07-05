@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script> 
+</head>
+<body>
+     Introduce número:<input type="text" id="numero"/>
+     <input type="button" onclick="calcula()" value="Cuadrado"/>
+     <input type="button" id="btnLimpiar" value="Limpiar"/>
+    </br>
+    </br>
+     Resultado JavaScript:<p id="res"></p>
+     Resultado JQuey:<p id="resJQ"></p>
+
+     <script>
+        //Función limpiar
+        $("#btnLimpiar").click(function(){
+            $("#numero").val("");
+            $("#res").html("");
+            $("#resJQ").html("");
+        })
+
+        function calcula(){
+            //JavaScript
+            var num = document.getElementById("numero").value;
+            document.getElementById("res").innerHTML = Math.pow(num,2);
+            //JQuey
+            var num2 = $("#numero").val();
+            $("#resJQ").html(Math.pow(num2,2));
+        }
+     </script>
+</body>
+</html>

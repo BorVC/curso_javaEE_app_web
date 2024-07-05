@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+<body>
+     <center>
+        <h1>Gestor de productos JQUERY</h1>
+        Nombre:<input type="text" id="nombre" name="nombre" placeholder="nombre"/>&nbsp;
+        Categoría:<input type="text" id="categoria" name="categoria" placeholder="categoria"/>&nbsp;
+        Precio:<input type="text" id="precio" name="precio" placeholder="precio"/></br>
+        </br>
+        <input type="button" id="guardar" value="Guardar" id="guardar"/>
+        <hr>
+        Categoría:<input type="text" id="buscarCategoria"/>&nbsp;
+        <input type="button" id="buscar" value="Buscar" id="buscar"/></center></br>
+        <div class="container-fluid col-lg-11 content">
+            <h2 style="text-align:center">Productos por categoría</h2><br>
+            <table id="tablaProductos" border='1' width="100%" cellspacing="0">
+            </table>
+        </div>
+     </center>
+     <script>
+        //Array de JSON
+        let productos = [];
+
+        //funciones
+        function limpiar(){
+            /*document.getElementById("nombre").value = "";  
+            document.getElementById("categoria").value = ""; 
+            document.getElementById("precio").value = "";*/
+            $("#nombre").val("");
+            $("#categoria").val("");
+            $("#precio").val("");
+        }
+
+        $("#guardar").click(function (){
+            let producto = new Object();
+            producto.nombre = $("#nombre").val();
+            producto.categoria = $("#categoria").val();
+            producto.precio = $("#precio").val();
+            productos.push(producto);
+            limpiar();
+            console.log(productos); 
+        })
+
+        $("#buscar").click(function (){
+            //let contenedorTabla = document.getElementById("tablaProductos");
+            let tablaProductos = "<thead><tr><th width=\"10\">Nombre</th><th width=\"10\">Categoria</th><th width=\"10\">Precio</th></tr></thead><tbody>";
+            //let categoria = $("#categoria");
+            for(let producto of productos){
+                if(producto.categoria == $("categoria").val){
+                    tablaProductos += "<tr><td style='text-align: center;'>" + producto.nombre + "</td>";
+                    tablaProductos += "<td style='text-align: center;'>" + producto.categoria + "</td>";
+                    tablaProductos += "<td style='text-align: center;'>" + producto.precio + "</td>";
+                    tablaProductos += "</tr>";
+                }
+            }
+            tablaProductos += "</tbody>";
+            
+            $("#tablaProductos").html(tablaProductos);
+        })
+     </script>
+
+</body>
+</html>

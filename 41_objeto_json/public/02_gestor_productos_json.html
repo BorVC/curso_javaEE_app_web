@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+     <center>
+        <h1>Gestor de productos</h1>
+        Nombre:<input type="text" id="nombre" name="nombre" placeholder="nombre"/>&nbsp;
+        Categoría:<input type="text" id="categoria" name="categoria" placeholder="categoria"/>&nbsp;
+        Precio:<input type="text" id="precio" name="precio" placeholder="precio"/></br>
+        </br>
+        <input type="button" id="guardar" value="Guardar" onclick="guardar()"/>
+        <hr>
+        Categoría:<input type="text" id="buscarCategoria"/>&nbsp;
+        <input type="button" id="buscar" value="Buscar" onclick="buscar()"/></center></br>
+        <div class="container-fluid col-lg-11 content">
+            <h2 style="text-align:center">Productos por categoría</h2><br>
+            <table id="tablaProductos" border='1' width="100%" cellspacing="0">
+            </table>
+        </div>
+     </center>
+     <script>
+        //Array de JSON
+        let productos = [];
+
+        //funciones
+        function guardar(){
+            let nombre = document.getElementById("nombre").value;
+            let categoria = document.getElementById("categoria").value; 
+            let precio = document.getElementById("precio").value;
+            /*let producto = '{"nombre":nombre,"categoria":categoria,"precio":precio}';
+            producto = JSON.parse(producto);*/
+            let producto = new Object();
+            producto.nombre = nombre;
+            producto.categoria = categoria;
+            producto.precio = precio;
+            productos.push(producto);
+            document.getElementById("nombre").value = "";  
+            document.getElementById("categoria").value = ""; 
+            document.getElementById("precio").value = "";
+            console.log(productos); 
+        }
+
+        function buscar(){
+            let contenedorTabla = document.getElementById("tablaProductos");
+            let tablaProductos = "<thead><tr><th width=\"10\">Nombre</th><th width=\"10\">Categoria</th><th width=\"10\">Precio</th></tr></thead><tbody>";
+            let categoria = document.getElementById("buscarCategoria").value;
+            for(let producto of productos){
+                if(producto.categoria == categoria){
+                    tablaProductos += "<tr><td style='text-align: center;'>" + producto.nombre + "</td>";
+                    tablaProductos += "<td style='text-align: center;'>" + producto.categoria + "</td>";
+                    tablaProductos += "<td style='text-align: center;'>" + producto.precio + "</td>";
+                    tablaProductos += "</tr>";
+                    console.log(producto.nombre);
+                    console.log(producto.categoria);
+                    console.log(producto.precio);
+                }
+            }
+            tablaProductos += "</tbody>";
+            contenedorTabla.innerHTML = tablaProductos;
+        }
+     </script>
+
+</body>
+</html>

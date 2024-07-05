@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+<body>
+<h1>Cursos</h1>
+<p>Java</p><p>Python</p><p>Kubernates</p><p>Spring Boot</p><p>Linux</p><br>
+<h2>Duraciones</h2>
+<b>120</b><b>80</b><b>60</b><b>75</b><b>50</b>
+<br>
+Duración máxima:<input type="text" id="duracion">
+<input type="button" value="Filtrar" id="filtar">
+<br>
+<div id="cursos">
+    <table id="tablaCursos" border='1' width="100%" cellspacing="0">
+    </table>
+</div>
+    <script>
+        let cursos = [];
+        $("p").each(function(i,p){
+            let obj = new Object();
+            obj.nombre = p.innerText;
+            obj.duracion = parseInt($("b").get(i).innerText);
+            obj.asignaturas=parseInt(obj.duracion / 30);
+            cursos.push(obj);
+        })
+
+        $.each(cursos,function(i,e){
+		console.log(JSON.stringify(e));
+	})
+
+        $("#filtar").click(function(){
+            let tablaCursos = "<thead><tr><th width=\"10\">Nombre</th><th width=\"10\">Duración</th><th width=\"10\">Asignatura</th></tr></thead><tbody>";
+            //let max=$("#duracion").val();
+                for(let curso of cursos){
+                if(curso.duracion <= $("#duracion").val()){
+                    tablaCursos += "<tr><td style='text-align: center;'>" + curso.nombre + "</td>";
+                    tablaCursos += "<td style='text-align: center;'>" + curso.duracion + "</td>";
+                    tablaCursos += "<td style='text-align: center;'>" + curso.asignaturas + "</td>";
+                    tablaCursos += "</tr>";
+                }
+            }
+            tablaCursos += "</tbody>";
+            
+            $("#tablaCursos").html(tablaCursos)
+        })
+    </script>
+</body>
+</html>
