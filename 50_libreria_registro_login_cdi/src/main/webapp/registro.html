@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+<body>
+     <center>
+		Usuario: <input type="text" id="usuario"><br>
+		Password: <input type="password" id="password"><br>
+		Email: <input type="text" id="email"><br>
+		Telefono: <input type="text" id="telefono"><br>
+					<c:forEach var="t" items="${requestScope.temas}">
+						<option value="${t.idTema}">${t.nombreTema}</option>
+					</c:forEach>
+				</select>
+		<input type="button" value="Registro" id="registro">
+		<br><br>
+	</center>
+	<script type="text/javascript">
+		$("#registrar").click(function(){
+			var url="FrontController";
+			var params={"operation":"doRegistrar",
+					"usuario":$("#usuario").val(),
+					"password":$("#password").val(),
+					"email":$("#email").val(),
+					"telefono":$("#telefono").val()};
+			$.get(url,params,function(data){
+				let mensaje;
+				if(data=="true"){
+					//Le mandamos a la página de login.Redireccionamiento al inicio
+					location.href ="FrontController?operation=toLogin";
+				}else{
+					alert("Usuario duplicado!!, debe introducir un usuario único");
+				}
+				alert(mensaje);
+			});
+		});
+	
+	</script>
+</body>
+</html>

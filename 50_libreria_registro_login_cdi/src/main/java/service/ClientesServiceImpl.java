@@ -17,7 +17,7 @@ public class ClientesServiceImpl implements ClientesService {
  
  @Override
 public boolean autenticar(String usuario, String password) {
-		return clientesDao.login(usuario, password) != null;
+		return clientesDao.login(usuario, password) != null && clientesDao.findByUsu(usuario).getPassword().equals(password);
  }
  
  @Override

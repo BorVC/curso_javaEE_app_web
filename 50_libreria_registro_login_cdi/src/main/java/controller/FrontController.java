@@ -34,10 +34,23 @@ public class FrontController extends HttpServlet {
 				request.getRequestDispatcher("TemasController").include(request, response);
 				urlView="alta.jsp";
 				break;
+			case "doLogin":
+				request.getRequestDispatcher("LoginController").include(request, response);
+				//Preguntar por atributo de sesión para saver si está autenticado el cliente
+				urlView=(boolean)request.getAttribute("autenticado")?"inicio.html":"registro.html";
+				break;
 			case "doAltaLibro":
 				request.getRequestDispatcher("AltaLibroController").forward(request, response);
 				return;//en peticiones AJAX la respuesta la lleva a cabo
 						//el servlet controlador
+			case "doRegistrar":
+				request.getRequestDispatcher("RegistroController").forward(request, response);
+				return;//en peticiones AJAX la respuesta la lleva a cabo
+						//el servlet controlador
+			case "toRegistro"://petición desde el enlace "Registrar"
+				urlView="registro.html";
+			case "toLogin":
+			    urlView="login.html";
 			default:
 				urlView="inicio.html";
 		}
